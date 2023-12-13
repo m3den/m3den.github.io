@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../postgresql-active-queries/">
       
       
-        <link rel="next" href="../postgresql-active-queries/">
+        <link rel="next" href="../postgresql-find-broken-files/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>How to grep docker and docker-compose logs - My Docs</title>
+        <title>Postresql create index - My Docs</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-to-grep-docker-and-docker-compose-logs" class="md-skip">
+        <a href="#postresql-create-index" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              How to grep docker and docker-compose logs
+              Postresql create index
             
           </span>
         </div>
@@ -208,19 +208,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../docker-grep-logs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -229,7 +220,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -258,10 +248,19 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../postgresql-create-index/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -270,6 +269,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -327,10 +327,8 @@
                   
 
 
-<h1 id="how-to-grep-docker-and-docker-compose-logs">How to grep docker and docker-compose logs</h1>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker-compose<span class="w"> </span>logs<span class="w"> </span>CONTAINER<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;PATTERN&quot;</span>
-</span></code></pre></div>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>CONTAINER<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;PATTERN&quot;</span>
+<h1 id="postresql-create-index">Postresql create index</h1>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">create</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">concurrently</span><span class="w"> </span><span class="n">table_name_index</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="p">(</span><span class="n">field</span><span class="p">);</span>
 </span></code></pre></div>
 
 

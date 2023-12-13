@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../docker-grep-logs/">
       
       
-        <link rel="next" href="../postgresql-active-queries/">
+        <link rel="next" href="../postgresql-create-index/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>How to grep docker and docker-compose logs - My Docs</title>
+        <title>Postgresql active queries - My Docs</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-to-grep-docker-and-docker-compose-logs" class="md-skip">
+        <a href="#postgresql-active-queries" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              How to grep docker and docker-compose logs
+              Postgresql active queries
             
           </span>
         </div>
@@ -208,6 +208,26 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker-grep-logs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to grep docker and docker-compose logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -224,32 +244,12 @@
         
   
   <span class="md-ellipsis">
-    How to grep docker and docker-compose logs
-  </span>
-  
-
-      </a>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../postgresql-active-queries/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
     Postgresql active queries
   </span>
   
 
       </a>
+      
     </li>
   
 
@@ -327,10 +327,11 @@
                   
 
 
-<h1 id="how-to-grep-docker-and-docker-compose-logs">How to grep docker and docker-compose logs</h1>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker-compose<span class="w"> </span>logs<span class="w"> </span>CONTAINER<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;PATTERN&quot;</span>
-</span></code></pre></div>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>CONTAINER<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;PATTERN&quot;</span>
+<h1 id="postgresql-active-queries">Postgresql active queries</h1>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">select</span><span class="w"> </span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="n">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">state_change</span><span class="p">,</span><span class="w"> </span><span class="n">usename</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="k">state</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="w"> </span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">from</span><span class="w"> </span><span class="n">pg_stat_activity</span><span class="w"> </span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">where</span><span class="w"> </span><span class="k">state</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;idle&#39;</span><span class="w"> </span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">state_change</span><span class="w"> </span><span class="k">desc</span><span class="p">;</span>
 </span></code></pre></div>
 
 
