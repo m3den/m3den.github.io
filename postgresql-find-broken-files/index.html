@@ -59,6 +59,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#postgresql-find-broken-files" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -125,6 +130,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -290,6 +297,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -322,6 +331,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -336,9 +347,29 @@
                   
 
 
-  <h1>Postgresql find broken files</h1>
-
-
+<h1 id="postgresql-find-broken-files">Postgresql find broken files</h1>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">with</span><span class="w"> </span><span class="n">d0</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">     </span><span class="k">select</span><span class="w"> </span><span class="n">oid</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">pg_database</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">datname</span><span class="o">=</span><span class="n">current_database</span><span class="p">()</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">),</span><span class="w"> </span><span class="n">d1</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">select</span><span class="w"> </span><span class="n">pg_ls_dir</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">fn</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">   </span><span class="n">regexp_match</span><span class="p">(</span><span class="n">pg_ls_dir</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;^([0-9]+)(.*)$&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">match</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">from</span><span class="w"> </span><span class="n">d0</span><span class="p">,</span><span class="w"> </span><span class="n">pg_ls_dir</span><span class="p">(</span><span class="s1">&#39;base/&#39;</span><span class="o">||</span><span class="n">d0</span><span class="p">.</span><span class="n">oid</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">),</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">d2</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">select</span><span class="w"> </span><span class="n">fn</span><span class="p">,</span><span class="w"> </span><span class="k">match</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="k">match</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ext</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">from</span><span class="w"> </span><span class="n">d1</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">where</span><span class="w"> </span><span class="p">(</span><span class="n">fn</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">ILIKE</span><span class="w"> </span><span class="s1">&#39;pg_%&#39;</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">),</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">d3</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">select</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="o">*</span><span class="p">,</span><span class="w">  </span><span class="n">pg_filenode_relation</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="p">::</span><span class="n">oid</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">relation</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">from</span><span class="w"> </span><span class="n">d2</span><span class="w"> </span><span class="n">d</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">)</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">select</span><span class="w"> </span><span class="n">fn</span><span class="p">,</span><span class="w"> </span><span class="n">pg_size_pretty</span><span class="p">((</span><span class="n">pg_stat_file</span><span class="p">(</span><span class="s1">&#39;base/&#39;</span><span class="o">||</span><span class="n">d0</span><span class="p">.</span><span class="n">oid</span><span class="o">||</span><span class="s1">&#39;/&#39;</span><span class="o">||</span><span class="n">fn</span><span class="p">)).</span><span class="k">size</span><span class="p">),(</span><span class="n">pg_stat_file</span><span class="p">(</span><span class="s1">&#39;base/&#39;</span><span class="o">||</span><span class="n">d0</span><span class="p">.</span><span class="n">oid</span><span class="o">||</span><span class="s1">&#39;/&#39;</span><span class="o">||</span><span class="n">fn</span><span class="p">)).</span><span class="k">size</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">from</span><span class="w"> </span><span class="n">d0</span><span class="p">,</span><span class="w"> </span><span class="n">d3</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">where</span><span class="w"> </span><span class="n">relation</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+</span></code></pre></div>
+<p><a href="https://www.postgresql.org/message-id/4ae62ff0-f33e-2a26-79ff-dcaa39ee92ff%40erven.at">ref</a></p>
 
 
 
@@ -385,7 +416,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
