@@ -3,6 +3,8 @@ theme:
   name: material
   features:
     - content.code.copy
+    - search.suggest
+    - search.highlight
 
 markdown_extensions:
   - pymdownx.highlight:
