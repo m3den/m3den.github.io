@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../docker-grep-logs/">
+        <link rel="prev" href="../git-cyrillic-symbols/">
       
       
-        <link rel="next" href="../linux-crontab/">
+        <link rel="next" href="../odoo-get-running-crons/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Git cyrillic symbols - My Docs</title>
+        <title>Linux crontab - My Docs</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#git-cyrillic-symbols" class="md-skip">
+        <a href="#linux-crontab" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Git cyrillic symbols
+              Linux crontab
             
           </span>
         </div>
@@ -230,6 +230,26 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../git-cyrillic-symbols/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git cyrillic symbols
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -246,32 +266,12 @@
         
   
   <span class="md-ellipsis">
-    Git cyrillic symbols
-  </span>
-  
-
-      </a>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../linux-crontab/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
     Linux crontab
   </span>
   
 
       </a>
+      
     </li>
   
 
@@ -409,11 +409,17 @@
                   
 
 
-<h1 id="git-cyrillic-symbols">Git cyrillic symbols</h1>
-<p>To enable use:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.quotepath<span class="w"> </span><span class="nb">false</span>
+<h1 id="linux-crontab">Linux crontab</h1>
+<p>Crontab guru - <a href="https://crontab.guru/">https://crontab.guru/</a></p>
+<p>List crons:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>crontab<span class="w"> </span>-l
 </span></code></pre></div>
-<p><a href="https://ru.stackoverflow.com/questions/770949/%D0%A0%D1%83%D1%81%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F-git-%D0%B2-%D0%BA%D0%BE%D0%BD%D1%81%D0%BE%D0%BB%D0%B8">ref</a></p>
+<p>Edit crons:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>crontab<span class="w"> </span>-e
+</span></code></pre></div>
+<p>Example:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>*/3<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/scripts/script.sh
+</span></code></pre></div>
 
 
 
