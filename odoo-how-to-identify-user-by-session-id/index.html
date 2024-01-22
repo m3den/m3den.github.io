@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../git-cyrillic-symbols/">
+        <link rel="prev" href="../odoo-get-running-crons/">
       
       
-        <link rel="next" href="../odoo-get-running-crons/">
+        <link rel="next" href="../postgresql-active-queries/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Linux crontab - My Docs</title>
+        <title>Odoo: How to identify user by session_id from cookie - My Docs</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#linux-crontab" class="md-skip">
+        <a href="#odoo-how-to-identify-user-by-session_id-from-cookie" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Linux crontab
+              Odoo: How to identify user by session_id from cookie
             
           </span>
         </div>
@@ -250,19 +250,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../linux-crontab/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -271,7 +262,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -300,10 +290,19 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../odoo-how-to-identify-user-by-session-id/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -312,6 +311,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -429,17 +429,18 @@
                   
 
 
-<h1 id="linux-crontab">Linux crontab</h1>
-<p>Crontab guru - <a href="https://crontab.guru/">https://crontab.guru/</a></p>
-<p>List crons:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>crontab<span class="w"> </span>-l
+<h1 id="odoo-how-to-identify-user-by-session_id-from-cookie">Odoo: How to identify user by session_id from cookie</h1>
+<ol>
+<li>Open session directory</li>
+<li><code>ls | grep &lt;session_id&gt;</code></li>
+<li><code>less &lt;file_...&gt;.sess</code></li>
+</ol>
+<p>Example of response:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;80&gt;^E&lt;95&gt;&lt;D0&gt;^@^@^@^@^@^@^@}&lt;94&gt;(&lt;8C&gt;^Edebug&lt;94&gt;&lt;8C&gt;^@&lt;94&gt;&lt;8C&gt;^Bdb&lt;94&gt;&lt;8C&gt;^DDATABASE&lt;94&gt;&lt;8C&gt;^Cuid&lt;94&gt;M;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>&lt;8C&gt;^Elogin&lt;94&gt;&lt;8C&gt;^H&lt;USER_LOGIN&gt;&lt;94&gt;&lt;8C&gt;^Msession_token&lt;94&gt;&lt;8C&gt;@11111111111111111111111111111111111111111111111111111111111111111&lt;94&gt;&lt;8C&gt;^Gcontext&lt;94&gt;}&lt;94&gt;(&lt;8C&gt;^Dlang&lt;94&gt;&lt;8C&gt;^Eru_RU&lt;94&gt;&lt;8C&gt;^Btz&lt;94&gt;&lt;8C&gt;^MEurope/Moscow&lt;94&gt;&lt;8C&gt;^Cuid&lt;94&gt;M;
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>u&lt;8C&gt;^Egeoip&lt;94&gt;}&lt;94&gt;u.
 </span></code></pre></div>
-<p>Edit crons:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>crontab<span class="w"> </span>-e
-</span></code></pre></div>
-<p>Example:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>*/3<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/scripts/script.sh
-</span></code></pre></div>
+<p>You can use USER_LOGIN to identify user</p>
 
 
 
