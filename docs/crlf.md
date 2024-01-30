@@ -8,7 +8,7 @@
 0x0D0A
 ```
 
-<CR><LF>
+`<CR><LF>`
 
-CR - Carriage Return
-LF - Line Feed
+- CR - Carriage Return
+- LF - Line Feed
