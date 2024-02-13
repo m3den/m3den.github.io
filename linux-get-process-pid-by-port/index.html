@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../linux-get-process-pid-by-port/">
+        <link rel="prev" href="../linux-crontab/">
       
       
-        <link rel="next" href="../odoo-how-to-identify-user-by-session-id/">
+        <link rel="next" href="../odoo-get-running-crons/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Odoo get running crons (ir.cron) - My Docs</title>
+        <title>Linux: Get process PID by port - My Docs</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#odoo-get-running-crons-ircron" class="md-skip">
+        <a href="#linux-get-process-pid-by-port" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Odoo get running crons (ir.cron)
+              Linux: Get process PID by port
             
           </span>
         </div>
@@ -310,26 +310,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../linux-get-process-pid-by-port/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Linux: Get process PID by port
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -346,12 +326,32 @@
         
   
   <span class="md-ellipsis">
-    Odoo get running crons (ir.cron)
+    Linux: Get process PID by port
   </span>
   
 
       </a>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../odoo-get-running-crons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Odoo get running crons (ir.cron)
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -509,31 +509,8 @@
                   
 
 
-<h1 id="odoo-get-running-crons-ircron">Odoo get running crons (ir.cron)</h1>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">with</span><span class="w"> </span><span class="n">active_cron_info</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w">  </span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">   </span><span class="k">select</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">query</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="s1">&#39;id in \((\d+)\)&#39;</span><span class="p">)::</span><span class="nb">int</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cron_id</span><span class="p">,</span><span class="w">  </span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">          </span><span class="n">query</span><span class="p">,</span><span class="w">  </span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">          </span><span class="n">pid</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">pid</span><span class="p">,</span><span class="w">  </span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">          </span><span class="n">usename</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">username</span><span class="p">,</span><span class="w">  </span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">          </span><span class="n">application_name</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">app_name</span><span class="p">,</span><span class="w">  </span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">          </span><span class="n">client_addr</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">client_addr</span><span class="p">,</span><span class="w">  </span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">          </span><span class="k">state</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">state</span><span class="p">,</span><span class="w">  </span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">          </span><span class="n">now</span><span class="p">()</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="k">zone</span><span class="w"> </span><span class="s1">&#39;utc&#39;</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">state_change</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="k">zone</span><span class="w"> </span><span class="s1">&#39;utc&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">time</span><span class="w">  </span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">   </span><span class="k">from</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="n">pg_stat_activity</span><span class="w">  </span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">   </span><span class="k">where</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="k">ilike</span><span class="w"> </span><span class="s1">&#39;%ir_cron%FOR NO KEY UPDATE SKIP LOCKED%&#39;</span><span class="w">  </span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">)</span><span class="w">  </span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">select</span><span class="w">  </span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">      </span><span class="n">cron</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="w">  </span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="n">cron</span><span class="p">.</span><span class="n">cron_name</span><span class="p">,</span><span class="w">  </span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">       </span><span class="n">cron_info</span><span class="p">.</span><span class="k">time</span><span class="p">,</span><span class="w">  </span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">       </span><span class="n">cron_info</span><span class="p">.</span><span class="n">username</span><span class="p">,</span><span class="w">  </span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">       </span><span class="n">cron_info</span><span class="p">.</span><span class="n">app_name</span><span class="p">,</span><span class="w">  </span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">       </span><span class="n">cron_info</span><span class="p">.</span><span class="n">client_addr</span><span class="p">,</span><span class="w">  </span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">       </span><span class="n">cron_info</span><span class="p">.</span><span class="k">state</span><span class="p">,</span><span class="w">  </span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">       </span><span class="n">cron_info</span><span class="p">.</span><span class="n">pid</span><span class="w">  </span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="k">from</span><span class="w"> </span><span class="n">ir_cron</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cron</span><span class="w">  </span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">active_cron_info</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cron_info</span><span class="w">  </span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">cron_info</span><span class="p">.</span><span class="n">cron_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cron</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+<h1 id="linux-get-process-pid-by-port">Linux: Get process PID by port</h1>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>ss<span class="w"> </span>-lptn<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;:8080&#39;</span>
 </span></code></pre></div>
 
 
